@@ -253,6 +253,16 @@ int main(int argc, char ** argv) {
     }
 
     LOG("prompt: \"%s\"\n", log_tostr(params.prompt));
+    printf("PROMPT: [");
+    bool first_tok = true;
+    for (const auto &token : embd_inp) {
+        if (!first_tok) {
+            printf(", ");
+        }
+        first_tok = false;
+        printf("%d", token);
+    }
+    printf("]\n");
     LOG("tokens: %s\n", LOG_TOKENS_TOSTR_PRETTY(ctx, embd_inp).c_str());
 
     // Should not run without any tokens
